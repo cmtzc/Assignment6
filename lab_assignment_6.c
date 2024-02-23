@@ -1,7 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h> //included to remove warnings
 
+//Modified search function to find and return the index at which the value is found in a sorted integer list
+//If the array is traversed and the value isn't found, return -1
 int search(int numbers[], int low, int high, int value) 
 {
+	int mid;
+	if (low <= high)
+	{
+		mid = (low + high) / 2;
+		if (value < numbers[mid]) {
+			return search(numbers, low, mid - 1, value); 
+		}
+		else if (value > numbers[mid]) {
+			return search(numbers, mid + 1, high, value);
+		}
+		else if (value == numbers[mid]){
+			return mid;
+		}
+	}
 	return -1;
 }
 
